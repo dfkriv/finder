@@ -21,14 +21,11 @@ try:
                 found.add(clean_domain)
 
 except Exception as e:
-    choice = input(f"Failed to fetch from crt.sh, retry? [Y/n]: ")
-    if choice.lower() != "n" or choice.lower != "y":
-        for i in range(0,4):
-            print(f"Retrying.. {i}/5")
-            time.sleep(2)
-            continue
+    for i in range(0,4):
+        print(f"Retrying.. {i}/5")
+        time.sleep(2)
+        continue
 
-print("\n[CRT.SH FINDS]\n")
 
 for subdomain in sorted(found):
     print(subdomain)
