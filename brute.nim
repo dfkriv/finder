@@ -19,7 +19,11 @@ proc ProcessList*(wlPath: string, domainName: string) {.async.} =
       let word = line.strip()
       let subdomain = word & "." & domainName
       tasks.add(subdomainCheck(subdomain))
-    await all(tasks)
+      if tasks.len >= 200:
+        await all(tasks)
+        tasks.setLen(0)
+    if tasks.len > 0:
+      await all(tasks)
       
       
   except Exception as e:
