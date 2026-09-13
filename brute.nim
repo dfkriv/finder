@@ -12,7 +12,7 @@ proc subdomainCheck(subdomain: string) {.async.} =
       echo subdomain
   except:
     discard
-proc processList(wlPath: string, domainName: string) {.async.} =
+proc ProcessList*(wlPath: string, domainName: string) {.async.} =
   try:
     var tasks: seq[Future[void]] = @[]
     for line in lines(wlPath):
@@ -24,4 +24,4 @@ proc processList(wlPath: string, domainName: string) {.async.} =
       
   except Exception as e:
     echo "Error opening " & e.msg
-waitFor(processList(wordlist, domain))
+waitFor(ProcessList(wordlist, domain))
