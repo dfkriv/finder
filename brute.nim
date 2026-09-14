@@ -28,4 +28,3 @@ proc ProcessList*(wlPath: string, domainName: string) {.async.} =
       
   except Exception as e:
     echo "Error opening " & e.msg
-waitFor(ProcessList(wordlist, domain))
